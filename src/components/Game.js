@@ -11,14 +11,14 @@ class Game extends Component {
 
     this.state = {
       submissions: [],
-      index: 1,
+      player: 1,
       isSubmitted: false,
       lastLine: "",
     }
   }
 
   submitLine = (newLine) => {
-    this.setState({index: this.state.index + 1})
+    this.setState({player: this.state.player + 1})
 
     const submissions = this.state.submissions;
     submissions.push(newLine);
@@ -53,7 +53,7 @@ class Game extends Component {
 
         <PlayerSubmissionForm
           fields={FIELDS}
-          index={this.state.index}
+          player={this.state.player}
           onSubmitCallback={this.state.submitLine}
           isSubmitted= {this.state.isSubmitted}/>
 

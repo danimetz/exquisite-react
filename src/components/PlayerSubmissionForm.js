@@ -6,15 +6,47 @@ class PlayerSubmissionForm extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      adj1: "",
+      adj2: "",
+      adv: "",
+      noun1: "",
+      noun2: "",
+      verb: "",
+    }
+  }
+
+  onLineSubmit = (event) => {
+    event.preventDefault();
+    const {adj1, adj2, adv, noun1, noun2, verb} = this.state;
+    const newLine = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2}.`
+    this.props.onSubmitCallback(newLine);
+    this.setState({
+      adj1: "",
+      adj2: "",
+      adv: "",
+      noun1: "",
+      noun2: "",
+      verb: "",
+    });
+  }
+
+  onFieldChangeHandler = (event) => {
+    const updateState = {};
+    const fieldName = event.target.name;
+    const value = event.target.value;
+    updateState[fieldName] = value;
+    this.setState(updateState);
   }
 
   render() {
 
     return (
       <div className="PlayerSubmissionForm">
-        <h3>Player Submission Form for Player #{  }</h3>
+        <h3>Player Submission Form for Player #{this.props.player}</h3>
 
-        <form className="PlayerSubmissionForm__form" >
+        <form className="PlayerSubmissionForm__form" onSubmit = {this.onLineSubmit} >
 
           <div className="PlayerSubmissionForm__poem-inputs">
 
@@ -38,7 +70,7 @@ class PlayerSubmissionForm extends Component {
 
 PlayerSubmissionForm.propTypes = {
   fields: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
+  player: PropTypes.number.isRequired,
   isSubmitted: PropTypes.bool.isRequired,
   sendSubmissionCallback: PropTypes.func.isRequired,
 }
