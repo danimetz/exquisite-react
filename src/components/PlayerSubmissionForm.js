@@ -20,7 +20,7 @@ class PlayerSubmissionForm extends Component {
   onLineSubmit = (event) => {
     event.preventDefault();
     const {adj1, adj2, adv, noun1, noun2, verb} = this.state;
-    const newLine = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2}.`
+    const newLine = `The ${adj1} ${noun1} ${adv} ${verb} the ${adj2} ${noun2}.`;
     this.props.onSubmitCallback(newLine);
     this.setState({
       adj1: "",
@@ -70,9 +70,8 @@ class PlayerSubmissionForm extends Component {
               // Put your form inputs here... We've put in one below as an example
               this.generateFormFields()
             }
-            <input
-              placeholder="hm..."
-              type="text" />
+
+
 
           </div>
 
@@ -88,8 +87,7 @@ class PlayerSubmissionForm extends Component {
 PlayerSubmissionForm.propTypes = {
   fields: PropTypes.array.isRequired,
   player: PropTypes.number.isRequired,
-  isSubmitted: PropTypes.bool.isRequired,
-  sendSubmissionCallback: PropTypes.func.isRequired,
+  onSubmitCallback: PropTypes.func.isRequired,
 }
 
 export default PlayerSubmissionForm;
